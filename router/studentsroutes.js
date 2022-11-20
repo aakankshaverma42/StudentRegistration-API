@@ -41,7 +41,7 @@ router.get('/',async(req,res) =>{
     res.send(studentData);
     };
   }catch(e){
-      res.status('500').send(e);
+      res.status(500).send(e);
   };
   });
   
