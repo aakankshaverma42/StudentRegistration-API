@@ -1,11 +1,17 @@
 const express = require('express');
 const router  =  express.Router();
 const Student = require("../model/Schema")
+const rateLimit = require('express-rate-limit')
 
 
-  //for creating the data in the api
-  router.post('/student', async(req,res) => {
+const limiter = rateLimit({
+  max: 5,
+  windowMs: 10000
+})
+
+  router.post('/student',limiter, async(req,res) => {
     console.log(req.body);
+    console.log(req.body.groupA);
    try{
         const user = new Student(req.body);
         const createUser =   await user.save();
@@ -13,7 +19,7 @@ const Student = require("../model/Schema")
    }catch(e) { res.status(404).send(e); }
 });
 
-//for reading the data
+
 router.get('/',async(req,res) =>{
     try{
     const readUser =    await Student.find();
@@ -22,7 +28,7 @@ router.get('/',async(req,res) =>{
    
   });
   
-  //for getting the indivisual student details by using the id which is unquie of each 
+  
   router.get('/:id',async(req,res) =>{
   try{
     const _id = req.params.id;
@@ -39,12 +45,12 @@ router.get('/',async(req,res) =>{
   };
   });
   
-  //for updating the document through the help of the id (particular unique id)
+
   router.patch('/:id', async(req,res) =>{
     try{
       const _id = req.params.id;
       const updateStudent = await Student.findByIdAndUpdate(_id,req.body, {
-        new : true //this basically insure that whatelse we update should show that updated data imediatly
+        new : true
       });
       res.status('202').send(updateStudent);
     }catch(e){
@@ -52,7 +58,7 @@ router.get('/',async(req,res) =>{
     }
   })
   
-  //for deleting the data by using the id
+
   router.delete('/:id', async(req,res) =>{
     try{
     const deleteStudent = await Student.findByIdAndDelete(req.params.id);
