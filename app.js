@@ -1,28 +1,37 @@
 require("dotenv").config();
 const express = require('express');
+var cors = require('cors')
 require("./db/student");
 const Student = require("./model/Schema");
 const studentRouter = require('./router/studentsroutes');
 const rateLimit = require('express-rate-limit')
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 const limiter = rateLimit({
   max: 5,
   windowMs: 10000
 })
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "OPTION,GET,POST,PUT,PATCH,DELETE"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "X-Requested-With,content-type"
-  );
-  res.setHeader("Access-Control-Allow-Credentials", true);
-  next();
-});
+// app.use((req, res, next) => {
+//   res.setHeader("Access-Control-Allow-Origin", "*");
+//   res.setHeader(
+//     "Access-Control-Allow-Methods",
+//     "OPTION,GET,POST,PUT,PATCH,DELETE"
+//   );
+//   res.setHeader(
+//     "Access-Control-Allow-Headers",
+//     "X-Requested-With,content-type"
+//   );
+//   res.setHeader("Access-Control-Allow-Credentials", true);
+//   next();
+// });
+
+
 
 app.get("/",(req,res) => {
   res.send("Hi, Api is working");
