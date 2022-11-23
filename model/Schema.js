@@ -91,7 +91,6 @@ const studentSchema = new mongoose.Schema({
     }, 
 });
     
-//we will create a new collection for model
 const Student = new mongoose.model('Student',studentSchema);
 
 module.exports = Student;
