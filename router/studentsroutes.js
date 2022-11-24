@@ -16,7 +16,7 @@ const limiter = rateLimit({
         const user = new Student(req.body);
         const createUser =   await user.save();
         res.status(201).send(createUser);
-   }catch(e) { res.status(404).send(e); }
+   }catch(e) { console.log(e);res.status(404).send(e); }
 });
 
 
@@ -33,7 +33,7 @@ router.get('/',async(req,res) =>{
   try{
     const _id = req.params.id;
     const studentData = await Student.findById(_id);
-    console.log(studentData);
+    // console.log(studentData);
     if(!studentData){
       res.status('404').send();
     }
