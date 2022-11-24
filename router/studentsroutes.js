@@ -10,8 +10,7 @@ const limiter = rateLimit({
 })
 
   router.post('/student',limiter, async(req,res) => {
-    console.log(req.body);
-    console.log(req.body.groupA);
+    
    try{
         const user = new Student(req.body);
         const createUser =   await user.save();

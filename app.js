@@ -41,4 +41,4 @@ app.use("/api/v1",studentRouter);
 
 app.listen(PORT,'0.0.0.0',() =>{
  console.log(`Conection to the server ${PORT}`)
-});y
+});

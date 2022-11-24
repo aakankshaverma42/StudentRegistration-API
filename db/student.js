@@ -1,9 +1,10 @@
+require('dotenv').config();
 const mongoose = require('mongoose');
-mongoose.connect("mongodb://localhost:27017/students-api", {
+mongoose.connect(process.env.DB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() =>{
-    console.log("Connection is successful");
+    console.log("Connection to MongoDb is successful");
 }).catch((e) => {
     console.log("No connection");
 });
