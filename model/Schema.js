@@ -4,17 +4,14 @@ const validator = require('validator');
 const subSchema1 = new mongoose.Schema({
     name :{
         type: String,
-        // index: true,
         required: true
     },
     rollNo :{
         type:Number,
-        // index: true,
         required: true
     },
     branch :{
         type: String,
-        // index:true,
         required: true
     },
     email: {
@@ -41,17 +38,14 @@ const subSchema1 = new mongoose.Schema({
 const subSchema2 = new mongoose.Schema({
     name :{
         type: String,
-        // index: true,
         required: true
     },
     rollNo :{
         type:Number,
-        // index: true,
         required: true
     },
     branch :{
         type: String,
-        // index:true,
         required: true
     },
     email: {
@@ -79,10 +73,6 @@ const subSchema2 = new mongoose.Schema({
 const studentSchema = new mongoose.Schema({
     team: {
         teamname: {
-            type: String,
-            required: true
-        },
-        teamsize: {
             type: String,
             required: true
         },
