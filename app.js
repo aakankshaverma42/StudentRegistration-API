@@ -49,7 +49,7 @@ app.post('/index.html', async (req, res) => {
    if (body.success !== undefined && !body.success)
    return res.json({ success: false, msg: 'Failed captcha verification' });
 
-   //If Successful (in this we can also add the node mailer for email sending or db saving )
+   //If Successful 
   return res.json({ success: true, msg: 'Captcha passed' });
 });
 
