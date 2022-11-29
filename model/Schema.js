@@ -14,6 +14,10 @@ const subSchema1 = new mongoose.Schema({
         type: String,
         required: true
     },
+    hostler:{
+        type:String,
+        required: true  
+    },
     email: {
         type:  String,
         required: true,
@@ -47,6 +51,10 @@ const subSchema2 = new mongoose.Schema({
     branch :{
         type: String,
         required: true
+    },
+    hostler:{
+        type:String,
+        required: true  
     },
     email: {
         type:  String,

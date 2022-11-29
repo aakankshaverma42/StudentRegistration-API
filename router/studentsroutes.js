@@ -2,6 +2,7 @@ const express = require('express');
 const router  =  express.Router();
 const Student = require("../model/Schema")
 const rateLimit = require('express-rate-limit')
+const sendmail = require("../services/mailer")
 
 
 const limiter = rateLimit({
@@ -14,6 +15,8 @@ const limiter = rateLimit({
    try{
         const user = new Student(req.body);
         const createUser =   await user.save();
+        sendmail(createUser.team.groupA[0].email,createUser.team.groupA[0].name);
+        sendmail(createUser.team.groupB[0].email,createUser.team.groupA[0].name);
         res.status(201).send(createUser);
    }catch(e) { console.log(e);res.status(404).send(e); }
 });
