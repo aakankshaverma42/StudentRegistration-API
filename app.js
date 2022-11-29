@@ -30,14 +30,9 @@ app.use(bodyParser.json());
 
 
 app.get('/',(_,res) => res.sendFile(__dirname + '/view/index.html'));
-app.get('/',(_,res) => res.sendFile(__dirname + '/view/index.html'));
 app.post('/index.html', async (req, res) => {
   if (!req.body.captcha)
     return res.json({ success: false, msg: 'Please select captcha' });
-
-  //Secret Key
-
-  const secretKey = '6LdQGDcjAAAAAPzorWMX9OCV1mi4KImgKRqPoV5R';
 
   //Verify URL
   const query = JSON.stringify({
@@ -45,7 +40,7 @@ app.post('/index.html', async (req, res) => {
     response: req.body.captcha,
     remoteip: req.connection.remoteAddress
   });
-  const verifyURL = `https://google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${req.body.captcha}&remoteip=${req.connection.remoteAddresss}`;
+  const verifyURL = `https://google.com/recaptcha/api/siteverify?secret=${process.env.CAPTCHA_SECRET_KEY}&response=${req.body.captcha}&remoteip=${req.connection.remoteAddresss}`;
  
   // Make Request To VerifyURL
   const body = await fetch(verifyURL).then(res => res.json());
