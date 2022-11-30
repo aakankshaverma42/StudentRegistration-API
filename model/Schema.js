@@ -17,7 +17,7 @@ const subSchema1 = new mongoose.Schema({
     hosteler: {
         type: String,
         required: true,
-        // enum : [ 'YES (Boys Hostel)', 'YES (Girls Hostel)', 'NO']
+        enum : [ 'YES (Boys Hostel)', 'YES (Girls Hostel)', 'NO']
     },
     email: {
         type: String,
@@ -56,7 +56,7 @@ const subSchema2 = new mongoose.Schema({
     hosteler: {
         type: String,
         required: true,
-        // enum : [ 'YES (Boys Hostel)', 'YES (Boys Hostel)', 'NO']
+        enum : [ 'YES (Boys Hostel)', 'YES (Boys Hostel)', 'NO']
     },
     email: {
         type: String,
@@ -85,6 +85,9 @@ const studentSchema = new mongoose.Schema({
         teamname: {
             type: String,
             required: true
+        },
+        password: {
+            type: String,
         },
         groupA: [subSchema1],
         groupB: [subSchema2],
