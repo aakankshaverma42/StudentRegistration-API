@@ -7,7 +7,7 @@ const subSchema1 = new mongoose.Schema({
         required: true
     },
     rollNo: {
-        type: Number,
+        type: String,
         required: true
     },
     branch: {
@@ -46,7 +46,7 @@ const subSchema2 = new mongoose.Schema({
         required: true
     },
     rollNo: {
-        type: Number,
+        type: String,
         required: true
     },
     branch: {
