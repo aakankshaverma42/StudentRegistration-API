@@ -1,99 +1,54 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 
-const subSchema1 = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    rollNo: {
-        type: String,
-        required: true
-    },
-    branch: {
-        type: String,
-        required: true
-    },
-    hosteler: {
-        type: String,
-        required: true,
-        // enum : [ 'YES (Boys Hostel)', 'YES (Girls Hostel)', 'NO']
-    },
-    email: {
-        type: String,
-        required: true,
-        unique: [true, "Email id already present"],
-        validator(value) {
-            if (!validator.isEmail(value)) {
-                throw new Error("Invalid Email")
-            }
-        }
-    },
-    phoneNo: {
-        type: Number,
-        min: 10,
-        required: true,
-        unique: true
-    },
-},
-    {
-        timestamp: true,
-    });
-
-const subSchema2 = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    rollNo: {
-        type: String,
-        required: true
-    },
-    branch: {
-        type: String,
-        required: true
-    },
-    hosteler: {
-        type: String,
-        required: true,
-        // enum : [ 'YES (Boys Hostel)', 'YES (Boys Hostel)', 'NO']
-    },
-    email: {
-        type: String,
-        required: true,
-        unique: [true, "Email id already present"],
-        validator(value) {
-            if (!validator.isEmail(value)) {
-                throw new Error("Invalid Email")
-            }
-        }
-    },
-    phoneNo: {
-        type: Number,
-        min: 10,
-        required: true,
-        unique: true
-    },
-},
-    {
-        timestamp: true,
-    });
-
-
 const studentSchema = new mongoose.Schema({
-    team: {
-        teamname: {
+        name: {
             type: String,
             required: true
         },
-        password: {
+        roll_no: {
             type: String,
+            required: true
         },
-        groupA: [subSchema1],
-        groupB: [subSchema2],
-    },
-});
+        branch: {
+            type: String,
+            required: true
+        },
+        year: {
+            type: String,
+            required: true,
+        },
+        email_id: {
+            type: String,
+            required: true,
+            unique: [true, "Email id already present"],
+            validator(value) {
+                if (!validator.isEmail(value)) {
+                    throw new Error("Invalid Email")
+                }
+            }
+        },
+        phone_no: {
+            type: Number,
+            min: 10,
+            required: true,
+            unique: true
+        },
+        leetcode_id:{
+            type: String,
+            required: true,
+        },
+        github_id:{
+            type: String,
+            required: true,
+        },
+        repo_id:{
+            type: String,
+            required: true,
+        },
+})    
 
-const Student = new mongoose.model('Student', studentSchema);
+
+const Student = new mongoose.model('Register', studentSchema);
 
 module.exports = Student;
