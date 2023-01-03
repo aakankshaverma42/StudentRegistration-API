@@ -91,11 +91,12 @@ const verifyCaptcha = async (req, res, next) => {
 // route for registration
 router.post('/register', async (req, res) => {
   try {
+    // console.log(res.body)
     const user = new Student(req.body);
     const createUser = await user.save();
 
     // After saving the data in the database, we will send the data to the code auction backend
-    await register_to_code_auction(req.body);
+    // await register_to_code_auction(req.body);
 
     res.status(201).send(createUser);
   } catch (e) { console.log(e); res.status(404).send(e); }
