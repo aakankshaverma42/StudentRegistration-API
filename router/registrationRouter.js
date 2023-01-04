@@ -9,7 +9,6 @@ const fetch = require("isomorphic-fetch");
 // Middleware for verifying the captcha
 
 const verifyCaptcha = async (req, res, next) => {
-  console.log(req.body);
   const { captchaToken } = req.body;
   const secretKey = process.env.CAPTCHA_SECRET_KEY;
 
@@ -89,7 +88,7 @@ const verifyCaptcha = async (req, res, next) => {
 // };
 
 // route for registration
-router.post('/register', async (req, res) => {
+router.post('/register',verifyCaptcha, async (req, res) => {
   try {
     // console.log(res.body)
     const user = new Student(req.body);
